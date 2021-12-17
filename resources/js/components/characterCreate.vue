@@ -4,8 +4,7 @@
 
 <script>
 export default {
-    name: "roomedit",
-    props: ['room']
+    name: "characterCreate"
 }
 </script>
 

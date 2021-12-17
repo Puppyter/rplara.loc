@@ -30,7 +30,7 @@ Route::resource('users', UserController::class)->middleware('web')->missing(func
 Route::resource('rooms',  RoomController::class)->middleware('web')->missing(function (Request $request){
     return redirect('rooms.index');
 })->scoped(['room'=> 'slug']);
-Route::any('/rooms/{room:slug}', [SpaRoomController::class,'show'])->middleware('web')->name('rooms.show');
+Route::any('/rooms/{room:slug}', [SpaRoomController::class,'show'])->name('rooms.show');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/invite/{room:slug}', [InviteController::class, 'invite'])->name('invite');

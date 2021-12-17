@@ -1,7 +1,7 @@
 <template>
     <ul>
         <li v-for="room in rooms" :key="room.id">
-            <form action="roomUrl()" method="post">
+            <form :action="roomUrl(room)" method="post">
                     <h3 class="text-white">{{room.name}}</h3>
                 <button type="submit"
                         class="btn rounded-pill text-white"

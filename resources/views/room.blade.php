@@ -20,7 +20,7 @@
     <Room :room="{{$room}}"></Room>
     <RoomEdit :room="{{$room}}"></RoomEdit>
     <invite></invite>
-    <character :character="{{$character}}"></character>
+{{--    <character :character="{{$character}}"></character>--}}
 {{--    <div class="row">--}}
 {{--        <div class="col-md-8">--}}
 {{--            <span class="border border-dark"></span>--}}
