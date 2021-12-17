@@ -1,12 +1,10 @@
 <template>
-    <p>{{room.name}}</p>
+
 </template>
 
 <script>
 export default {
-    name: "room",
-
-    props: ['room'],
+    name: "chat"
 }
 </script>
 

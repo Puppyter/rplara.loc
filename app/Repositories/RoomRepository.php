@@ -10,7 +10,7 @@ class RoomRepository implements RoomInterface
 
     public function getAll()
     {
-        return Room::paginate(10);
+        return Room::get();
     }
 
     public function getRoom($roomSlug)

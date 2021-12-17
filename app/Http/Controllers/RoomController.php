@@ -63,7 +63,7 @@ class RoomController extends Controller
         {
             return response()->view('pleaseInvite',['room'=>$room, 'user'=>$room->user]);
         }
-        return response()->view('room', ['slug'=>$room->slug, 'player'=>$player]);
+        return response()->view('room', ['room'=>$room, 'player'=>$player]);
     }
 
     /**

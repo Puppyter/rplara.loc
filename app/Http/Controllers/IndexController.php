@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function index(RoomService $roomService)
+    public function index(RoomService $roomService, Request $request)
     {
-        $room = $roomService->getRoom('admin');
+        $room = $roomService->getRoom($request->get('slug') ?? 'admin');
         return response()->view('welcome',['room'=>$room]);
     }
 }
