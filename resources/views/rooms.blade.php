@@ -7,4 +7,8 @@
     @endif
     <rooms :rooms="{{$rooms}}"></rooms>
 @endsection
-
+<script>
+    var Laravel = {
+        'csrfToken' : '{{csrf_token()}}'
+    };
+</script>

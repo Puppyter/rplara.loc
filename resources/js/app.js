@@ -9,7 +9,8 @@ import RoomEdit from "./components/RoomEdit";
 require('./bootstrap');
 const Room = require("./components/Room.vue");
 window.Vue = require('vue').default;
-Vue.use(VueRouter)
+// Vue.use(VueRouter)
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -28,52 +29,53 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 
 // Vue.component('room', require('./components/Room.vue').default);
 
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const router = new VueRouter({
-    mode: 'history',
-    base: __dirname,
-    routes: [
-        {
-            path: '/rooms/:room',
-            name: 'rooms.show',
-            component: Room
-        },
-        {
-            path: '/rooms/:room/edit',
-            name: 'roomedit',
-            component: RoomEdit
-        },
-        {
-            path: '/rooms/:room/:character/show',
-            name: 'character.show',
-            component: character
-        },
-        {
-          path: '/rooms/:room/:character/create',
-          name: 'character.create',
-          component: characterCreate
-        },
-        {
-            path: '/rooms/:room/invite',
-            name: "invite",
-            component: invite
-        }
-    ],
-    mixin() {
-        router.beforeEach((to, from, next) => {
-            next()
-        })
-    }
-})
+// const router = new VueRouter({
+//     mode: 'history',
+//     base: __dirname,
+//     routes: [
+//         {
+//             path: '/rooms/:room',
+//             name: 'rooms.show',
+//             component: Room
+//         },
+//         {
+//             path: '/rooms/:room/edit',
+//             name: 'roomedit',
+//             component: RoomEdit
+//         },
+//         {
+//             path: '/rooms/:room/:character/show',
+//             name: 'character.show',
+//             component: character
+//         },
+//         {
+//           path: '/rooms/:room/:character/create',
+//           name: 'character.create',
+//           component: characterCreate
+//         },
+//         {
+//             path: '/rooms/:room/invite',
+//             name: "invite",
+//             component: invite
+//         }
+//     ],
+//     mixin() {
+//         router.beforeEach((to, from, next) => {
+//             next()
+//         })
+//     }
+// })
 
 const app = new Vue({
     el: '#app',
-    router,
+    // router,
 
     // components : {
     //

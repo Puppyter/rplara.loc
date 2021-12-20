@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Repositories\MetierRepository;
 use App\Repositories\PlayerRepository;
 use App\Repositories\RoomRepository;
 
@@ -16,14 +17,18 @@ class SpaRoomService
     public function getData(string $roomSlug, int $playerId)
     {
         /** @var PlayerRepository $playerRepository */
+        /** @var MetierRepository $metierRepository */
+        $metierRepository = app(MetierRepository::class);
         $playerRepository = app(PlayerRepository::class);
         $room = $this->roomRepository->getRoom($roomSlug);
         $player = $playerRepository->find($playerId);
         $character = $player->character;
+        $metiers = $metierRepository->getAllNames();
         return [
             'room' =>$room,
             'player' => $player,
-            'character' => $character
+            'character' => $character,
+            'metiers' =>$metiers
             ];
     }
 }

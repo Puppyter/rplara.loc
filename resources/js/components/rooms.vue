@@ -2,6 +2,7 @@
     <ul>
         <li v-for="room in rooms" :key="room.id">
             <form :action="roomUrl(room)" method="post">
+                <input type="hidden" name="_token" :value="csrf">
                     <h3 class="text-white">{{room.name}}</h3>
                 <button type="submit"
                         class="btn rounded-pill text-white"
@@ -25,7 +26,9 @@
 export default {
     name: "rooms",
     props: ['rooms'],
-    data: () => ({}),
+    data: () => ({
+        csrf: '',
+    }),
     beforeRouteUpdate(to, from, next)
     {
         next()
@@ -47,6 +50,9 @@ export default {
         roomUrl(room) {
             return 'rooms/' + room.slug;
         },
+    },
+    mounted() {
+        this.csrf = window.Laravel.csrfToken;
     }
 }
 </script>

@@ -12,6 +12,6 @@ class SpaRoomController extends Controller
     public function show(Request $request, SpaRoomService $roomService)
     {
         $data = $roomService->getData($request->room, Auth::id());
-        return response()->view('room', ['room'=>$data['room'], 'player'=>$data['player'], 'character'=>$data['character']]);
+        return response()->view('room', ['room'=>$data['room'], 'player'=>$data['player'], 'character'=>$data['character'], 'metiers'=>$data['metiers']]);
     }
 }

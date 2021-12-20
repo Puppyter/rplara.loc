@@ -4,7 +4,7 @@
 
 <script>
 export default {
-    name: "roomedit",
+    name: "room-edit",
     props: ['room']
 }
 </script>
