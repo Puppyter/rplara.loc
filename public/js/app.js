@@ -5431,6 +5431,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "characterCreate",
   props: ['metiers'],
@@ -5444,44 +5463,32 @@ __webpack_require__.r(__webpack_exports__);
         wisdom: 8,
         charisma: 8
       },
-      health: ''
+      health: '',
+      counterAttributes: ''
     };
   },
-  watch: {
-    attributes: function attributes(oldAttributes, newAttributes) {
-      this.attributes = newAttributes;
-    }
-  },
-  // computed: {
-  //     attributes: {
-  //         get() {
-  //             return this.attributes;
-  //         },
-  //         set(attributeName,newValue) {
-  //             this.attributes.attributeName = newValue;
-  //         }
-  //     }
-  // },
+  watch: {},
   methods: {
     getAttribute: function getAttribute() {
-      var _this = this;
-
-      axios.get('/rooms/:room').then(function (response) {
-        _this.attributes = response.data.attributes;
-      })["catch"](function (error) {})["finally"]();
+      axios.get('/rooms/:room').then(function (response) {})["catch"](function (error) {})["finally"]();
     },
     get: function get() {
-      var _this2 = this;
-
       axios.get('/rooms/:room').then(function (response) {
         console.log(response);
-        _this2.attributes = response.data.attributes;
       })["catch"](function (error) {
         console.log(error);
       })["finally"](function () {});
     },
+    countAttribute: function countAttribute() {
+      return 48 - this.attributes.map(function (attribute) {
+        return attribute.value;
+      }).reduce(function (prev, curr) {
+        return prev + curr;
+      }, 0);
+    },
     generateHealth: function generateHealth(constitution) {
-      this.health = Math.floor(Math.random() * 10) + constitution;
+      this.health = Math.floor(Math.random() * 10) + Number(constitution);
+      console.log(constitution);
     }
   }
 });
@@ -29030,36 +29037,158 @@ var render = function () {
       ),
     ]),
     _vm._v(" "),
+    _c("div", { staticClass: "col" }),
+    _vm._v(" "),
     _c("div", { staticClass: "row row-cols-3" }, [
-      _c(
-        "ul",
-        { attrs: { id: "attributes-rendering" } },
-        _vm._l(_vm.attributes, function (value, name) {
-          return _c(
-            "li",
+      _c("div", { staticClass: "col" }, [
+        _c("p", { staticClass: "text-white" }, [_vm._v("strength")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
             {
-              model: {
-                value: _vm.attributes,
-                callback: function ($$v) {
-                  _vm.attributes = $$v
-                },
-                expression: "attributes",
-              },
+              name: "model",
+              rawName: "v-model",
+              value: _vm.attributes.strength,
+              expression: "attributes.strength",
             },
-            [
-              _c("div", { staticClass: "col" }, [
-                _c("p", { staticClass: "text-white" }, [_vm._v(_vm._s(name))]),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "text", name: name },
-                  domProps: { value: value },
-                }),
-              ]),
-            ]
-          )
+          ],
+          attrs: { type: "number" },
+          domProps: { value: _vm.attributes.strength },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.attributes, "strength", $event.target.value)
+            },
+          },
         }),
-        0
-      ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col" }, [
+        _c("p", { staticClass: "text-white" }, [_vm._v("dexterity")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.attributes.dexterity,
+              expression: "attributes.dexterity",
+            },
+          ],
+          attrs: { type: "number" },
+          domProps: { value: _vm.attributes.dexterity },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.attributes, "dexterity", $event.target.value)
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col" }, [
+        _c("p", { staticClass: "text-white" }, [_vm._v("constitution")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.attributes.constitution,
+              expression: "attributes.constitution",
+            },
+          ],
+          attrs: { type: "number" },
+          domProps: { value: _vm.attributes.constitution },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.attributes, "constitution", $event.target.value)
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col" }, [
+        _c("p", { staticClass: "text-white" }, [_vm._v("intellect")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.attributes.intellect,
+              expression: "attributes.intellect",
+            },
+          ],
+          attrs: { type: "number" },
+          domProps: { value: _vm.attributes.intellect },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.attributes, "intellect", $event.target.value)
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col" }, [
+        _c("p", { staticClass: "text-white" }, [_vm._v("wisdom")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.attributes.wisdom,
+              expression: "attributes.wisdom",
+            },
+          ],
+          attrs: { type: "number" },
+          domProps: { value: _vm.attributes.wisdom },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.attributes, "wisdom", $event.target.value)
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col" }, [
+        _c("p", { staticClass: "text-white" }, [_vm._v("charisma")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.attributes.charisma,
+              expression: "attributes.charisma",
+            },
+          ],
+          attrs: { type: "number" },
+          domProps: { value: _vm.attributes.charisma },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.attributes, "charisma", $event.target.value)
+            },
+          },
+        }),
+      ]),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "col" }, [

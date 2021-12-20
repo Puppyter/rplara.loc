@@ -18,15 +18,34 @@
                 <option v-for="metier in metiers" :value="metier">{{metier}}</option>
             </select>
         </div>
+        <div class="col">
+            
+        </div>
         <div class="row row-cols-3">
-        <ul id="attributes-rendering">
-            <li v-for="(value, name) in attributes" v-model="attributes">
-                <div class="col">
-                    <p class="text-white">{{name}}</p>
-                    <input type="text" :name="name" :value="value">
-                </div>
-            </li>
-        </ul>
+            <div class="col">
+                <p class="text-white">strength</p>
+                <input type="number" v-model="attributes.strength">
+            </div>
+            <div class="col">
+                <p class="text-white">dexterity</p>
+                <input type="number" v-model="attributes.dexterity">
+            </div>
+            <div class="col">
+                <p class="text-white">constitution</p>
+                <input type="number" v-model="attributes.constitution">
+            </div>
+            <div class="col">
+                <p class="text-white">intellect</p>
+                <input type="number" v-model="attributes.intellect">
+            </div>
+            <div class="col">
+                <p class="text-white">wisdom</p>
+                <input type="number" v-model="attributes.wisdom">
+            </div>
+            <div class="col">
+                <p class="text-white">charisma</p>
+                <input type="number" v-model="attributes.charisma">
+            </div>
         </div>
         <div class="col">
             <span>
@@ -34,11 +53,10 @@
                 <button @click="generateHealth(attributes.constitution)">Re-roll HP</button>
             </span>
         </div>
-    </div>
+        </div>
 </template>
 
 <script>
-
 export default {
     name: "characterCreate",
     props: ['metiers'],
@@ -52,28 +70,16 @@ export default {
             charisma: 8
         },
         health: '',
+        counterAttributes: ''
     }),
     watch: {
-      attributes(oldAttributes, newAttributes) {
-        this.attributes = newAttributes;
-      }
+
     },
-    // computed: {
-    //     attributes: {
-    //         get() {
-    //             return this.attributes;
-    //         },
-    //         set(attributeName,newValue) {
-    //             this.attributes.attributeName = newValue;
-    //         }
-    //     }
-    // },
     methods: {
         getAttribute()
         {
           axios.get('/rooms/:room')
           .then(response =>{
-              this.attributes = response.data.attributes
           })
           .catch(error => {
 
@@ -84,7 +90,7 @@ export default {
             axios.get('/rooms/:room')
                 .then(response =>{
                     console.log(response)
-                    this.attributes = response.data.attributes
+
                 })
                 .catch(error => {
                     console.log(error);
@@ -92,8 +98,12 @@ export default {
                 .finally(() => {
                 })
         },
+        countAttribute() {
+            return 48 - this.attributes.map(attribute => attribute.value).reduce((prev, curr) => prev + curr, 0)
+        },
         generateHealth(constitution) {
-            this.health = Math.floor(Math.random() * 10)+ constitution;
+            this.health = Math.floor(Math.random() * 10)+ Number(constitution);
+            console.log(constitution)
         }
     }
 }
