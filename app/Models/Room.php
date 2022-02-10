@@ -24,6 +24,10 @@ class Room extends Model
     {
         return $this->hasMany(Player::class);
     }
+    public function  characters()
+    {
+        return $this->hasManyThrough(Player::class, Character::class);
+    }
     public function user()
     {
         return $this->belongsTo(User::class);

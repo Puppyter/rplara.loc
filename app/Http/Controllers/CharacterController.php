@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateCharacterRequest;
 use App\Models\Character;
 use App\Services\CharacterService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use function GuzzleHttp\Promise\all;
 
@@ -32,6 +33,8 @@ class CharacterController extends Controller
     public function store(StoreCharacterRequest $request, CharacterService $characterService)
     {
         $data = $request->all();
+        $data['player_id'] = Auth::id();
+        $data["race"] = 'cho-to';
         $data['avatar'] = $request->avatar->store('public');
         $character = $characterService->create($data);
         return redirect()->route('characters.show',['character'=>$character->id]);
@@ -41,13 +44,13 @@ class CharacterController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Character  $character
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function show(Request $request, CharacterService $characterService)
     {
         $character = $characterService->get($request->character);
         $character->avatar = Storage::url($character->avatar);
-        return response()->view('character',['character' =>$character]);
+        return redirect()->back();
     }
 
     /**

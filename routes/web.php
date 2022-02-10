@@ -52,4 +52,5 @@ Route::get('/generate/hp', [CharacterCreateController::class,'generateHp'])->nam
 Route::resource('characters',CharacterController::class)->middleware('web')->missing(function (Request $request){
     return redirect('rooms.index');
 });
+Route::post('/character/store', [CharacterController::class, 'store'])->name('character.store');
 

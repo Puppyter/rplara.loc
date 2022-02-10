@@ -7,9 +7,12 @@
                 <button @click="get">fsadf</button>
             </form>
             <div>
-                <button @click="show = !show" class="btn rounded-pill text-white" style="background-color: #61892f">hide message</button>
-                <transition name="slide-room">
-                    <p style="color:white;" v-if="show">{{ name }}</p>
+
+                <transition class="slide-room">
+                    <span>
+                        <button @click="show = !show" class="btn rounded-pill text-white" style="background-color: #61892f">hide message</button>
+                        <p class="text-white" v-if="show">{{ name }}</p>
+                    </span>
                 </transition>
             </div>
         </div>

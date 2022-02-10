@@ -20,16 +20,18 @@
     <div class="row row-cols-2">
         <div class="col">
             @if($character == null)
-                <character-create :metiers="{{$metiers}}"></character-create>
+                <character-create  :metiers="{{$metiers}}" route="{{route('characters.store')}}"></character-create>
             @else
                 <character :character="{{$character}}"></character>
             @endif
         </div>
-        <div class="col">
-            <Room :room="{{$room}}" ></Room>
-            <room-edit :room="{{$room}}"></room-edit>
-            <invite></invite>
-        </div>
     </div>
 @endsection
-
+@section('sidebar')
+    <chat></chat>
+@endsection
+<script>
+    var Laravel = {
+        'csrfToken' : '{{csrf_token()}}'
+    };
+</script>
